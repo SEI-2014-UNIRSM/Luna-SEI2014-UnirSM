@@ -3,6 +3,8 @@ Basato su: P_2_3_4_01  — Segue licenza originale.
 Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più info http://goo.gl/59obuO 
 */
 
+// Luna Valentini
+
 // P_2_3_4_01.pde
 // 
 // Generative Gestaltung, ISBN: 978-3-87439-759-9
@@ -28,7 +30,7 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
  * drag                : draw
  * 
  * KEYS
- * 1-9                 : switch module    // modificato in cambio colore
+ * 1-9                 : switch module    // modified: only key "1" to change color
  * del, backspace      : clear screen
  * arrow up            : module size +
  * arrow down          : module size -
@@ -41,9 +43,9 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
 
 
 
-// mi sono concentrata solo su un tipo di pennello (ellisse) e volevo usare i tasti 1-9
-// per switchare i colori invece delle forme, ma non ci sono riuscita e non riesco a capire perchè
-// i parametridei colori li ho commentati perchè non hanno effetto
+// I focused only on the elliptic brush and I wanted to use keys 1 to 9 
+// to switch between color but I did not succeed
+
 
 
 import processing.pdf.*;
@@ -53,9 +55,9 @@ import java.util.Calendar;
 boolean recordPDF = false;
 
 float x = 0, y = 0;
-float stepSize = 1.0; // step ridotto da 5.0 a 1.0: forme ravvicinate, si crea scia interessante
-float moduleSize = 10; // da 25 a 10 ellissi più strette
-//float c= color(90, 100, 100, 150); // aggiunta variabile colore
+float stepSize = 1.0; // step reduced from 5.0 to 1.0 - closer shapes creates an intresting trail
+float moduleSize = 10; // from 25 to 10 narrower ellipses
+float c= color(90, 100, 100, 150); // color variable added
 
 PShape lineModule;
 
@@ -68,7 +70,7 @@ void setup() {
   x = mouseX;
   y = mouseY;
   cursor(CROSS);
-  // colorMode(HSB, 360, 100, 100, 100); 
+  colorMode(HSB, 360, 100, 100, 100); 
   lineModule = loadShape("01.svg");
   
  
@@ -81,7 +83,6 @@ void setup() {
 }
 
 void draw() {
-  //colorMode(HSB, 360, 100, 100, 100);
   
   if (mousePressed) {
     float d = dist(x, y, mouseX, mouseY);
@@ -92,7 +93,7 @@ void draw() {
       pushMatrix();
       translate(mouseX, mouseY);
       rotate(angle+PI);
-      // stroke(360, 100, 100, 100); // colore ellisse
+      stroke(360, 100, 100, 100); // ellipse color
       shape(lineModule, 0, 0, d, moduleSize);
       popMatrix();
 
@@ -111,7 +112,9 @@ void mousePressed() {
 
 void keyReleased() {
   if (key == 's' || key == 'S') saveFrame(timestamp()+"_##.png");
-  if (key == DELETE || key == BACKSPACE) background(255);
+  if (key == DELETE || key == BACKSPACE) background(360,0,100);
+  
+  if (key == '1') fill (c);
 
   // ------ pdf export ------
   // press 'r' to start pdf recordPDF and 'e' to stop it
@@ -135,8 +138,8 @@ void keyReleased() {
 
 void keyPressed() {
 
-  // cambio colore
-  //if (key == '1') c = color(255, 0, 0, 100);
+  // change color
+  if (key == '1') fill (c);
 
   /*
   if (key=='1') lineModule = loadShape("01.svg");
@@ -169,7 +172,6 @@ String timestamp() {
   Calendar now = Calendar.getInstance();
   return String.format("%1$ty%1$tm%1$td_%1$tH%1$tM%1$tS", now);
 }
-
 
 
 
