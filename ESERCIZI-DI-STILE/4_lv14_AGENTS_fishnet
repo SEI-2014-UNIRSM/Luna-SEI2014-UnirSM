@@ -3,6 +3,8 @@ Basato su: P_2_2_2_02  — Segue licenza originale.
 Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più info http://goo.gl/59obuO 
 */
 
+// Luna Valentini
+
 // P_2_2_2_02.pde
 // 
 // Generative Gestaltung, ISBN: 978-3-87439-759-9
@@ -23,6 +25,8 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
 
 /**
  * draw the path of an intelligent agent
+ * from the original I modified the lines's tilt and color
+ * adding also top and bottom void edge to create a lace tissue effect
  * 
  * MOUSE
  * position x          : drawing speed
@@ -50,13 +54,13 @@ float posX, posY;
 float posXcross, posYcross;
 
 int direction = SOUTH;
-float angleCount = 1;    //// 1 - ...   //diminuisco le angolazioni possibili
+float angleCount = 1;    //// 1 - ...   // decreases teh possible tilts 
 float angle = getRandomAngle(direction);
-float stepSize = 10; // cambio da 3 a 10: angoli retti e griglia quadrata
-int minLength = 5; // cambio da 10 a 5
+float stepSize = 10; // changed from 3 to 10: it creates the fishnet effect (similar to a squared grid saw in perspective)
+int minLength = 5; // changed from 10 to 5
 
 // width and brightness of the stroke depend on line length
-int dWeight = 100; // cambio da 50 a 100 : linee più sottili
+int dWeight = 100; // changed from 50 to 100: thinner lines
 int dStroke = 4; 
 
 int drawMode = 1;
@@ -80,19 +84,19 @@ void draw(){
 
     // ------ draw dot at current position ------
     if (!recordPDF) {
-      strokeWeight(5);// aumento tratto da 1  a 5
+      strokeWeight(5);// increased from 1 to 5
       stroke(180);
       point(posX, posY);
     }
 
     // ------ make step ------
-    posX += 2*cos(radians(angle)) * stepSize; // aggiunto 2*...perchè 2? Perchè ho provato a caso :P
+    posX += 2*cos(radians(angle)) * stepSize; // added 2*...why? I dont't now, I just tried (need explanation)
     posY += sin(radians(angle)) * stepSize;
 
     // ------ check if agent is near one of the display borders ------
     boolean reachedBorder = false;
 
-    if (posY <= 50) {  // cambiato da 5 a 50 - crea bordo superiore
+    if (posY <= 50) {  // changed from 5 to 50 - create void top edge
       direction = SOUTH;
       reachedBorder = true;
     } 
@@ -100,7 +104,7 @@ void draw(){
       direction = WEST;
       reachedBorder = true;
     }
-    else if (posY >= height-50) {  //cambiato da -5 a -50 crea bordo inferiore
+    else if (posY >= height-50) {  // changed from -5 to -50 - create void bottom edge
       direction = NORTH;
       reachedBorder = true;
     }
@@ -119,7 +123,7 @@ void draw(){
         strokeWeight(distance/dWeight);
         if (drawMode == 1) stroke(0);
         if (drawMode == 2) stroke(52, 100, distance/dStroke);
-        if (drawMode == 3) stroke(300, 100, 64, distance/dStroke); // 192 a 300 da blu a viola
+        if (drawMode == 3) stroke(300, 100, 64, distance/dStroke); // changed from 192 to 300 (blue to violet)
         line(posX, posY, posXcross, posYcross);
       }
       posXcross = posX;
