@@ -3,8 +3,7 @@ Basato su:  P_2_1_1_03  — Segue licenza originale.
 Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più info http://goo.gl/59obuO 
 */
 
-// This code was modified from Generative Gestaltung, for school projects
-//  by Università di San Marino. Non commercial use.
+// Luna Valentini
 
 // P_2_1_1_03.pde
 // 
@@ -26,6 +25,7 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
 
 /**
  * changing number, color and strokeweight on diagonals in a grid
+ * From original I modified background color and the tilt of lines
  * 	 
  * MOUSE
  * position x          : diagonal strokeweight
@@ -47,17 +47,17 @@ import java.util.Calendar;
 
 boolean savePDF = false;
 
-color colorBack = color(0); // cambiato colore di fondo da bianco a nero
+color colorBack = color(0); // I changed the background colors from white to black
 color colorLeft = color(0);
 color colorRight = color(0);
 
 float tileCount = 1;
 boolean transparentLeft = false;
 boolean transparentRight = false;
-float alphaLeft = 200; // cambiato da 100 a 200 ma non noto una gran differenza dall'originale
-float alphaRight = 200; // cambiato da 100 a 200 ma non noto una gran differenza dall'originale
+float alphaLeft = 200; // changed from 100 to 200 but I don't see big differences
+float alphaRight = 200; // changed from 100 to 200 but I don't see big differences
 
-int actRandomSeed = 3;// cambiata da 0 a 3
+int actRandomSeed = 3;// changed from 0 to 3
 
 
 void setup() {
@@ -76,7 +76,7 @@ void draw() {
   smooth();
   noFill();
   randomSeed(actRandomSeed);
-  strokeWeight(mouseX/100);// spessore tratto cambiato da /15 a /100
+  strokeWeight(mouseX/100);// changed from mouseX/15 to mouseX/100
 
   tileCount = mouseY/15;
 
@@ -92,17 +92,17 @@ void draw() {
       if (transparentRight == true) alphaRight = 100-gridY*10; 
       else alphaRight = 100;
 
-      int toggle = (int) random(0, 2);// aumentare le scelte dà disegni meno interessanti_2 è ok
+      int toggle = (int) random(0, 2);// to increase the number of possibilities return less interesting drawings so 2 is ok
 
       if (toggle == 0) {
         stroke(colorLeft, alphaLeft);
-        line(posX, posY, posX+(width/tileCount)/100, posY+height/tileCount); //cambiato da /2 a /100 cambia angolazione linee 
-        line(posX+(width/tileCount)/100, posY, posX+(width/tileCount), posY+height/tileCount); //cambiato da /2 a /100 cambia angolazione linee 
+        line(posX, posY, posX+(width/tileCount)/100, posY+height/tileCount); // changed from /2 to /100  -it changes lines' tilt
+        line(posX+(width/tileCount)/100, posY, posX+(width/tileCount), posY+height/tileCount); // changed from /2 to /100  -it changes lines' tilt
       }
       if (toggle == 1) {
         stroke(colorRight, alphaRight);
-        line(posX, posY+width/tileCount, posX+(height/tileCount)/100, posY); //cambiato da /2 a /100 cambia angolazione linee
-        line(posX+(height/tileCount)/100, posY+width/tileCount, posX+(height/tileCount), posY); //cambiato da /2 a /100 cambia angolazione linee 
+        line(posX, posY+width/tileCount, posX+(height/tileCount)/100, posY); // changed from /2 to /100  -it changes lines' tilt
+        line(posX+(height/tileCount)/100, posY+width/tileCount, posX+(height/tileCount), posY); // changed from /2 to /100  -it changes lines' tilt 
       }
     }
   }
