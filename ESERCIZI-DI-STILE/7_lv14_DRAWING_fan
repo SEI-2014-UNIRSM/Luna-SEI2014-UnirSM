@@ -3,6 +3,8 @@ Basato su: P_2_3_2_01  — Segue licenza originale.
 Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più info http://goo.gl/59obuO 
 */
 
+// Luna Valentini
+
 // P_2_3_2_01.pde
 // 
 // Generative Gestaltung, ISBN: 978-3-87439-759-9
@@ -23,6 +25,8 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
 
 /**
  * draw tool. shows how to work with relations between elements. 
+ ** I changed colors, strokeweight and I decreased the step between the lines
+ ** so they stick togheter and they may resemble a fan
  * 
  * MOUSE
  * drag                : draw
@@ -52,19 +56,19 @@ int drawMode = 1;
 color col = color(random(360),random(100),random(100),random(100));
 float x = 0, y = 0;
 //float newX = 0, newY = 0;
-float stepSize = 1.0; // da 5.= a 1.0
-float lineLength = 15; // da 25 a 15 
+float stepSize = 1.0; // from 5.0  to 1.0 I reduced the step so the lines are closer
+float lineLength = 15; // from 25 to 15 
 
 
 void setup() {
   // use full screen size 
   size(displayWidth, displayHeight);
-  colorMode(HSB, 360, 100,100,100); // cambio color mode
+  colorMode(HSB, 360, 100,100,100); // changed color mode
   background(100,0,100,100);
   smooth();
   x = mouseX;
   y = mouseY;
-  cursor(ARROW); // cambio cursore da CROSS a ARROW
+  cursor(ARROW); // changed cursor from CROSS to ARROW
 }
 
 
@@ -78,10 +82,10 @@ void draw() {
       pushMatrix();
       translate(x,y);
       rotate(angle);
-      strokeWeight(4); //aggiunto spessore tratto
+      strokeWeight(4); //increased stroke weight
       stroke(col);
       if (frameCount % 2 == 0) stroke(150);
-      line(0,0,0,lineLength*random(0.95,1.0)*d/5); // cambiato da d/10 a d/5
+      line(0,0,0,lineLength*random(0.95,1.0)*d/5); // changed from d/10 to d/5
       popMatrix();
 
       if (drawMode == 1) {
@@ -99,8 +103,8 @@ void draw() {
 void mousePressed() {
   x = mouseX;
   y = mouseY;
-  col = color(random(255),random(255),random(255),100); // tolto ultimo random e messo 100
-  //lineLength = random(15,50);
+  col = color(random(255),random(255),random(255),100); // I fixed transparency to 100
+  //lineLength = random(15,50);  // I commented that so there is no restriction in line lenght
 }
 
 void keyReleased() {
