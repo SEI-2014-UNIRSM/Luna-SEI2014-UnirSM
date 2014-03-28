@@ -3,6 +3,8 @@ Basato su: P_2_3_1_02 — Segue licenza originale.
 Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più info http://goo.gl/59obuO 
 */
 
+// Luna Valentini
+
 // P_2_3_1_02.pde
 // 
 // Generative Gestaltung, ISBN: 978-3-87439-759-9
@@ -23,6 +25,8 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
 
 /**
  * draw tool. draw with a rotating element (svg file). 
+ ** little changes in colors, rotation to achieve the firework effect
+ ** added "r" key to switch between a random selection of colors
  * 
  * MOUSE
  * drag                : draw
@@ -62,7 +66,7 @@ int clickPosY = 0;
 void setup() {
   // use full screen size 
   size(displayWidth, displayHeight);
-  background(0);// cambio colore da bianco a nero
+  background(0);// changed background color from white to black
   smooth();
   cursor(CROSS);
 }
@@ -83,12 +87,12 @@ void draw() {
     translate(x, y);
     rotate(radians(angle));
     if (lineModule != null) {
-      shape(lineModule, 10, 10, lineModuleSize, lineModuleSize); // da 0 a 10
+      shape(lineModule, 10, 10, lineModuleSize, lineModuleSize); // from 0 to 10
     } 
     else {
       line(0, 0, lineModuleSize, lineModuleSize);
     }
-    angle = angle+10 + angleSpeed; // aggiunto + 10 a angle: ho raggi più radi
+    angle = angle+10 + angleSpeed; // added +10 to angle: I obtain sparser rays
     popMatrix();
   }
 }
@@ -96,7 +100,7 @@ void draw() {
 
 void mousePressed() {
   // create a new random color and line length
-  lineModuleSize = random(50, 200); // cambiato da 50,160 a 50,200
+  lineModuleSize = random(50, 200); // changed from (50,160) to (50,200)
 
     // remember click position
   clickPosX = mouseX;
@@ -104,7 +108,7 @@ void mousePressed() {
 }
 
 void keyReleased() {
-  if (key == DELETE || key == BACKSPACE) background(0); // richiamo lo sfondo nero
+  if (key == DELETE || key == BACKSPACE) background(0); // recall black background
 
   if (key == 's' || key == 'S') saveFrame(timestamp()+"_##.png");
 
@@ -116,14 +120,14 @@ void keyReleased() {
   }
 
   // r g b alpha  
-  //aggiunta 'r' , dato un range specifico a Hue
+  //added 'r' , to change color in a specific range
   if (key == 'r') col = color(random(250, 255), random(255), random(255), random(80, 150)); 
 
 
   //default colors from 1 to 4 
   if (key == '1') col = color(181, 157, 0, 100);
   if (key == '2') col = color(0, 130, 164, 100);
-  if (key == '3') col = color(100, 35, 129, 100); //cambio viola
+  if (key == '3') col = color(100, 35, 129, 100); // changed violet
   if (key == '4') col = color(197, 0, 123, 100);
 
   // load svg for line module
@@ -158,7 +162,7 @@ void keyReleased() {
 
 
 void keyPressed() {
-  if (keyCode == UP) lineModuleSize += 10; // cambiato da 5 a 10 per fare più incremento
+  if (keyCode == UP) lineModuleSize += 10; // changed from 5 to 10 to increase increment
   if (keyCode == DOWN) lineModuleSize -= 10; 
   if (keyCode == LEFT) angleSpeed -= 0.5;
   if (keyCode == RIGHT) angleSpeed += 0.5;
