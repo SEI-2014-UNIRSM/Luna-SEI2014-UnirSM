@@ -3,6 +3,8 @@
  Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più info http://goo.gl/59obuO 
  */
 
+// Luna Valentini
+
 // P_2_3_3_01.pde
 // 
 // Generative Gestaltung, ISBN: 978-3-87439-759-9
@@ -41,25 +43,26 @@
 
 
 
-// volevo aggiungere un file musicale ma non ho trovato il modo, credo si debbano installare librerie apposite
+// I wanted to add the music file but I didn't know how to do that
+// maybe specific libraris are needed? (I will look for a tutorial ...)
 
 import processing.pdf.*;
 import java.util.Calendar;
 
-PImage img; // dichiaro variabile immagine
+PImage img; // image variable declared
 
 boolean recordPDF = false;
 
-color col = color(0, 100, 100);  //dichiaro variabile colore
+color col = color(0, 100, 100);  // color variable declared
 
 float x = 0, y = 0;
 float stepSize = 5.0; 
 
-// modifico testo: estratto da "It is what it is" by Elisa Toffoli
+// modified text: extract from "It is what it is" by Elisa Toffoli
 PFont font;
 String letters = "I was afraid of too many things but dying to prove I was strong enough - to make my own way - to make it myself - to keep my head up be the one who helps - but it's got me crying , it's got me crawling - I'm so grateful 'cause it's got me knowing, it beats with my heart, the love that we made, shines through my eyes it's out of the maze........";
-int fontSizeMin = 5; //cambio da 3 a 5 perchè era troppo piccolo
-float angleDistortion = 0.0; // distorce ogni lettera
+int fontSizeMin = 5; //changed from 3 to 5 because it was too small
+float angleDistortion = 0.0; // distorts every letters
 
 int counter = 0;
 
@@ -67,22 +70,22 @@ int counter = 0;
 void setup() {
   // use full screen size 
   size(displayWidth, displayHeight);
-  colorMode(HSB, 360, 100, 100); // cambio modalità colore
-  color col = color(280, 100, 100);  //dichiaro variabile colore
+  colorMode(HSB, 360, 100, 100); // changed color mode
+  color col = color(280, 100, 100);  // color variable declared
 
   //background(255);
-  img = loadImage ("sky.jpg"); //carico l'immagine
+  img = loadImage ("sky.jpg"); // load the image
   smooth();
   cursor(CROSS);
 
-  image(img, 0, 0); // visualizza l'immagine
+  image(img, 0, 0); // viualize teh image
 
   x = mouseX;
   y = mouseY;
 
 
 
-  font = createFont("Zapfino", 10);  // ho cambiato il font
+  font = createFont("Zapfino", 10);  // I changed the font
   //font = createFont("ArnhemFineTT-Normal",10);
   textFont(font, fontSizeMin);
   textAlign(LEFT);
@@ -132,13 +135,13 @@ void keyPressed() {
   if (keyCode == UP) angleDistortion += 0.1;
   if (keyCode == DOWN) angleDistortion -= 0.1; 
   // cambiamenti colore
-  if (key == '1')  fill (270, 100, 100); //cambio colore se schiaccio 1
+  if (key == '1')  fill (270, 100, 100); //change type color if I press 1
 }
 
 void keyReleased() {
   if (key == 's' || key == 'S') saveFrame(timestamp()+"_##.png");
-  if (key == DELETE || key == BACKSPACE) background(img); // sparisce il testo ma resti l'immagine
-  if (key == '1') fill (260, 100,100);  // cambio colore se rilascio 1
+  if (key == DELETE || key == BACKSPACE) background(img); // delete text but recall the background image
+  if (key == '1') fill (260, 100,100);  // change type color if I release 1
 
   // ------ pdf export ------
   // press 'r' to start pdf recordPDF and 'e' to stop it
