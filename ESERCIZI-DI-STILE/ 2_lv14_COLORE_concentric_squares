@@ -24,7 +24,9 @@ Algoritmo modificato per esercizio durante il corso SEI 2014 @ UnirSM — Più i
 
 /**
  * changing colors and size by moving the mouse
- * 	 
+ * when the mouse reaches the center of the screen, a new square appears
+ * it is concentric to the previous and filled with background color
+ *
  * MOUSE
  * position x          : size
  * position y          : color
@@ -58,11 +60,11 @@ void draw() {
   fill(360-mouseY/2, 100, 100);
   rect(360, 360, mouseX+1, mouseX+1);
 
-  // se la posizione del mouse si trova dal centro dello schermo
+  // if mouse position get trough the center of the screen
   
   if (mouseX>360 || mouseY>360) {
-    fill(mouseY/2, 100, 100); //colore di sfondo
-    rect(360, 360, mouseX/2, mouseX/2); //disegna quadrato concentrico
+    fill(mouseY/2, 100, 100); // background color
+    rect(360, 360, mouseX/2, mouseX/2); // draws a concentric square
   }
 
   // end of pdf recording
